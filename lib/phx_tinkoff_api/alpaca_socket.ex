@@ -56,10 +56,8 @@ defmodule PhxTinkoffApi.AlpacaSocket do
     {:ok, state}
   end
 
-  def handle_parsed_message({:ok, [payload]}, state) do
-    for sub <- state.subs do
-      Phoenix.PubSub.broadcast(PhxTinkoffApi.PubSub, "#{@topic}:#{sub}", payload)
-    end
+  def handle_parsed_message({:ok, [%{ "S" => symbol } =payload]}, state) do
+    Phoenix.PubSub.broadcast(PhxTinkoffApi.PubSub, "#{@topic}:#{symbol}", payload)
     {:ok, state}
   end
 
