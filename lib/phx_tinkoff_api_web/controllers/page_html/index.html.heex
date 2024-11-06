@@ -1,0 +1,10 @@
+<section class="flex flex-col gap-4">
+  <h2 class="text-xl font-medium">Hello World, from Phoenix!</h2>
+  <nav class="grid grid-cols-3 auto-rows-fr gap-2">
+    <%= for symbol <- @symbols do %>
+      <div>
+        <a href={ "/symbols/" <> symbol["url"] }><%= symbol["symbol"] %></a>
+      </div>
+    <% end %>
+  </nav>
+</section>
